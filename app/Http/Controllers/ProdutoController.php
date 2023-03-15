@@ -11,7 +11,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos =Produto::orderBy('nome')->get();
-        dd($produtos);
+        return view ('produto.index',['produtos' =>$produtos]);
     }
 
     /**
@@ -35,7 +35,8 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $produto = produto::find($id);
+        return view('produto.show' , ['produto' =>$produto]);
     }
 
     /**
