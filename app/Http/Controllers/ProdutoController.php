@@ -19,16 +19,26 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('produto.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $validated = $request->validate([
+        'nome'          => 'required',
+        'quantidade'    => 'required',
+        'valor'         => 'required'
+    ]);
+        $produto = new Produto;
+        $produto -> nome         = $request -> nome;
+        $produto -> quantidade   = $request -> quantidade;
+        $produto -> valor        = $request -> valor;
+        $produto -> save();
+        return redirect('/produto')->with ('status','Produto criado com sucesso!');
+}
 
     /**
      * Display the specified resource.
