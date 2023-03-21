@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Produto;
+use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
@@ -26,19 +26,28 @@ class ProdutoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'nome'          => 'required',
-        'quantidade'    => 'required',
-        'valor'         => 'required'
-    ]);
-        $produto = new Produto;
-        $produto -> nome         = $request -> nome;
-        $produto -> quantidade   = $request -> quantidade;
-        $produto -> valor        = $request -> valor;
-        $produto -> save();
-        return redirect('/produto')->with ('status','Produto criado com sucesso!');
-}
+    {
+        //dd($request->all());
+
+        /*  $validated = $request->validate([
+            'nome'          => 'required',
+            'quantidade'    => 'required',
+            'valor'         => 'required',
+        ]);
+        */
+
+        $validator = Validator::make($request->all(), [
+            'nome'          => 'required',
+            'quantidade'    => 'required',
+            'valor'         => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('produto/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+    }
 
     /**
      * Display the specified resource.

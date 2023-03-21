@@ -7,20 +7,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produto', [ProdutoController::class, 'index']
-)->name('produto.index');
+// --------------------- PRODUTO ----------------------------------
 
+Route::get('/produto', [ProdutoController::class, 'index'])
+->name('produto.index');
 
+// create
+// exibir o formulário
+Route::get('/produto/create', [ProdutoController::class, 'create'])
+->name('produto.create');
 
-//create
-Route::post('/produto/create',[ProdutoController::class, 'store'])
+// salvar o formulário
+Route::post('/produto/create', [ProdutoController::class, 'store'])
 ->name('produto.store');
 
-//exibir
-Route::get('/produto/create',[ProdutoController::class, 'create'])
-->name('produto.create');
-//salvar
 
-
-Route::get('/produto/{id}' , [ProdutoController::class, 'show'])
+Route::get('/produto/{id}', [ProdutoController::class, 'show'])
 ->name('produto.show');
