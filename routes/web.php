@@ -24,3 +24,9 @@ Route::post('/produto/create', [ProdutoController::class, 'store'])
 
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])
 ->name('produto.show');
+
+//edit
+Route::get('/produto/{id}/edit', [ProdutoController::class, 'edit'])
+->name('produto.edit');
+
+//att

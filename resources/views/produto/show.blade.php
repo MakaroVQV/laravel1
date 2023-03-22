@@ -16,8 +16,8 @@
     <body>
         Produtos<br>
         
-        <b>Nome:</b> {{$produto->nome}}<br>
-        <b>Quantidade</b> {{$produto->quantidade}}<br>
-        <b>valor</b> {{$produto->valor}}<br>
+        <b>Nome:</b> {{ $produto->nome }}<br>
+        <b>Quantidade</b> {{ $produto->quantidade }}<br>
+        <b>Valor</b> {{ $produto->valor }}<br>
     </body>
 </html>

@@ -29,7 +29,7 @@ class ProdutoController extends Controller
     {
         //dd($request->all());
 
-        /*  $validated = $request->validate([
+    /* $validated = $request->validate([
             'nome'          => 'required',
             'quantidade'    => 'required',
             'valor'         => 'required',
@@ -38,7 +38,7 @@ class ProdutoController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nome'          => 'required',
-            'quantidade'    => 'required',
+            'quantidade'    => 'required|integer',
             'valor'         => 'required',
         ]);
 
@@ -47,6 +47,16 @@ class ProdutoController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+        
+
+        $produto = new Produto;
+        $produto -> nome = $request->nome;
+        $produto -> quantidade = $request->quantidade;
+        $produto -> valor = $request -> valor;
+        $produto -> save();
+        
+        return redirect('/produto')-> with ('status','Produto criado com sucesso!');
+        
     }
 
     /**
@@ -63,7 +73,8 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produto = Produto::find($id);
+        return view('produto.edit',['produto'=>$produto]);
     }
 
     /**
