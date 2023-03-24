@@ -29,4 +29,4 @@ Route::get('/produto/{id}', [ProdutoController::class, 'show'])
 Route::get('/produto/{id}/edit', [ProdutoController::class, 'edit'])
 ->name('produto.edit');
 
-//att
+//Destroy
