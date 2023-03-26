@@ -8,7 +8,7 @@
     <title>Laravel</title>
 </head>
 Produtos<br>
-<a href="{{ url('produto/create') }}">CRIAR</a>
+<a href="{{ url('categoria/create') }}">CRIAR</a>
 
 @if (session('status'))
 <div class="alert alert-success">
@@ -18,17 +18,16 @@ Produtos<br>
 
 <table>
     <tr>
-        <th>Categoria</th>
         <th>Nome</th>
         <th>Ação</th>
     </tr>
-    @foreach ($produtos as $value)
+    @foreach ($categorias as $value)
     <tr>
         <td>{{ $value->nome }}</td>
         <td>
-            <a href="{{ url('produto/' . $value->id) }}">Visualizar</a>
-            <a href="{{ url('produto/' . $value->id . '/edit') }}">Editar</a>
-            {!! Form::open(['url' => 'produto/' . $value->id, 'method' => 'delete']) !!}
+            <a href="{{ url('categoria/' . $value->id) }}">Visualizar</a>
+            <a href="{{ url('categoria/' . $value->id . '/edit') }}">Editar</a>
+            {!! Form::open(['url' => 'categoria/' . $value->id, 'method' => 'delete']) !!}
             {{ Form::submit('EXCLUIR') }}
             {!! Form::close() !!}
         </td>
