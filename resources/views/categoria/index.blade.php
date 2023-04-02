@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('adminlte::page')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-    <title>Laravel</title>
-</head>
-Produtos<br>
-<a href="{{ url('categoria/create') }}">CRIAR</a>
+    Produtos<br>
+    <a href="{{ url('categoria/create') }}">CRIAR</a>
 
-@if (session('status'))
-<div class="alert alert-success">
-    {{ session('status') }}
-</div>
-@endif
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
 
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Ação</th>
-        
-    </tr>
+    <table>
+  <tr>
+    <th>Nome</th>
+    <th>Ação</th>
+  </tr>
     @foreach ($categorias as $value)
-    <tr>
-        <td>{{ $value->nome }}</td>
-        <td>
-            <a href="{{ url('categoria/' . $value->id) }}">Visualizar</a>
-            <a href="{{ url('categoria/' . $value->id . '/edit') }}">Editar</a>
-            {!! Form::open(['url' => 'categoria/' . $value->id, 'method' => 'delete']) !!}
-            {{ Form::submit('EXCLUIR') }}
-            {!! Form::close() !!}
-        </td>
-    </tr>
+  <tr>
+    <td>{{ $value->nome }}</td>
+    <td>
+      <a href="{{ url('categoria/' . $value->id) }}">Visualizar</a>
+      <a href="{{ url('categoria/' . $value->id . '/edit') }}">Editar</a>
+      {!! Form::open(['url' => 'categoria/' . $value->id, 'method' => 'delete']) !!}
+      {{ Form::submit('EXCLUIR') }}
+      {!! Form::close() !!}
+    </td>
+  </tr>
     @endforeach
 </table>
+
+@endsection

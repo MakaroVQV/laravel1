@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('adminlte::page')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-    <title>Laravel</title>
-</head>
+
         Formulário - CREATE
 
         @if ($errors->any())
@@ -29,3 +25,4 @@
         {!! Form::close() !!}
 
 
+@endsection

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Laravel</title>
-    </head>
-    Formulário - CREATE
+@extends('adminlte::page')
+
+@section('content')
+
+
+        Formulário - CREATE
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -18,8 +17,8 @@
 
         {!! Form::open(['url' => 'produto/create']) !!}
 
-        {{ Form::label('categoria','Categoria')}}<br>
-        {{ Form::select('categoria_id', $categorias)}}<br>
+        {{ Form::label('categoria', 'Categoria:') }}<br>
+        {{ Form::select('categoria_id', $categorias) }}<br>
 
         {{ Form::label('nome', 'Nome:') }}<br>
         {{ Form::text('nome') }}<br>
@@ -34,5 +33,4 @@
 
         {!! Form::close() !!}
 
-
-</html>
+@endsection

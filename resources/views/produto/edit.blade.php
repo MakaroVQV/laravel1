@@ -1,4 +1,6 @@
+@extends('adminlte::page')
 
+@section('content')
 
 
         {!! Form::open(['url' => 'produto/' . $produto->id, 'method' => 'put']) !!}
@@ -18,3 +20,5 @@
         {{ Form::submit('Enviar') }}
 
         {!! Form::close() !!}
+
+@endsection

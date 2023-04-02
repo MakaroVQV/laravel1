@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('adminlte::page')
 
-{!! Form::open(['url' => 'produto/' . $produto->id, 'method' => 'put']) !!}
+@section('content')
 
-{{ Form::label('categoria', 'Categoria:') }}<br>
-{{ Form::select('categoria_id', $categorias, $produto->categoria->id) }}<br>
 
-{{ Form::label('nome', 'Nome:') }}<br>
-{{ Form::text('nome', $produto->nome) }}<br>
+        {!! Form::open(['url' => 'categoria/' . $categoria->id, 'method' => 'put']) !!}
 
-{{ Form::label('quantidade', 'Quantidade:') }}<br>
-{{ Form::text('quantidade', $produto->quantidade) }}<br>
+        {{ Form::label('nome', 'Nome:') }}<br>
+        {{ Form::text('nome', $categoria->nome) }}<br>
 
-{{ Form::label('valor', 'Valor:') }}<br>
-{{ Form::text('valor', $produto->valor) }}<br>
+        {{ Form::submit('Enviar') }}
 
-{{ Form::submit('Enviar') }}
+        {!! Form::close() !!}
 
-{!! Form::close() !!}
+@endsection
