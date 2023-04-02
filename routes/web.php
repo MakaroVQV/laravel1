@@ -71,3 +71,6 @@ Route::put('/categoria/{id}', [CategoriaController::class, 'update'])
 //DESTROY
 Route::delete('/categoria/{id}', [categoriaController::class, 'destroy'])
 ->name('categoria.destroy');
+
+
+// --------------------- CATEGORIA ----------------------------------

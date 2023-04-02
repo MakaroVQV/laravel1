@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+</html>
+<title>Laravel</title>
+Produto - show<br>
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <style></style>
-    </head>
-    <body>
-        Produtos<br>
-        
-        <b>Nome:</b> {{ $produto->nome }}<br>
-        <b>Quantidade</b> {{ $produto->quantidade }}<br>
-        <b>Valor</b> {{ $produto->valor }}<br>
-    </body>
+<b>Categoria:</b> {{ $produto->categoria->nome }}<br>
+<b>Nome:</b> {{ $produto->nome }}<br>
+<b>Quantidade</b> {{ $produto->quantidade }}<br>
+<b>Valor</b> {{ $produto->valor }}<br>
 </html>

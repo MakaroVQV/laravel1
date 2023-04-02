@@ -1,12 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
-</head>
 Produtos<br>
 <a href="{{ url('produto/create') }}">CRIAR</a>
 
@@ -24,6 +18,7 @@ Produtos<br>
     </tr>
     @foreach ($produtos as $value)
     <tr>
+        <td>{{ $value->categoria->nome }}</td>
         <td>{{ $value->nome }}</td>
         <td>
             <a href="{{ url('produto/' . $value->id) }}">Visualizar</a>

@@ -20,6 +20,7 @@ Produtos<br>
     <tr>
         <th>Nome</th>
         <th>Ação</th>
+        
     </tr>
     @foreach ($categorias as $value)
     <tr>

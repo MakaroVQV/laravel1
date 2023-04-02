@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Categoria;
 
 class ProdutoController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $produtos =Produto::orderBy('nome')->get();
-        return view ('produto.index',['produtos' =>$produtos]);
+        $produtos = Produto::orderBy('nome')->get();
+        return view('produto.index', ['produtos' => $produtos]);
     }
 
     /**
@@ -19,7 +22,8 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produto.create');
+        $categorias = Categoria::orderBy('nome', 'ASC')->pluck('nome', 'id');
+        return view('produto.create', ['categorias' => $categorias]);
     }
 
     /**
@@ -28,35 +32,22 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-
-    /* $validated = $request->validate([
-            'nome'          => 'required',
-            'quantidade'    => 'required',
-            'valor'         => 'required',
-        ]);
-        */
-
-        $validator = Validator::make($request->all(), [
-            'nome'          => 'required',
+        $validated = $request->validate([
+            'categoria_id'  => 'required',
+            'nome'          => 'required|min:5',
             'quantidade'    => 'required|integer',
             'valor'         => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('produto/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        
-
         $produto = new Produto;
-        $produto -> nome = $request->nome;
-        $produto -> quantidade = $request->quantidade;
-        $produto -> valor = $request -> valor;
-        $produto -> save();
-        
-        return redirect('/produto')-> with ('status','Produto criado com sucesso!');
-        
+        $produto->categoria_id  = $request->categoria_id;
+        $produto->nome          = $request->nome;
+        $produto->quantidade    = $request->quantidade;
+        $produto->valor         = $request->valor;
+        $produto->save();
+
+        return redirect('/produto')->with('status', 'Produto criado com sucesso!');
+
     }
 
     /**
@@ -64,8 +55,8 @@ class ProdutoController extends Controller
      */
     public function show(string $id)
     {
-        $produto = produto::find($id);
-        return view('produto.show' , ['produto' =>$produto]);
+        $produto = Produto::find($id);
+        return view('produto.show', ['produto' => $produto]);
     }
 
     /**
@@ -74,7 +65,8 @@ class ProdutoController extends Controller
     public function edit(string $id)
     {
         $produto = Produto::find($id);
-        return view('produto.edit',['produto'=>$produto]);
+        $categorias = Categoria::orderBy('nome', 'ASC')->pluck('nome', 'id');
+        return view('produto.edit', ['produto' => $produto, 'categorias' => $categorias]);
     }
 
     /**
@@ -82,7 +74,22 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'categoria_id'  => 'required',
+            'nome'          => 'required|min:5',
+            'quantidade'    => 'required|integer',
+            'valor'         => 'required',
+        ]);
+
+        $produto = Produto::find($id);
+        $produto->categoria_id  = $request->categoria_id;
+        $produto->nome          = $request->nome;
+        $produto->quantidade    = $request->quantidade;
+        $produto->valor         = $request->valor;
+        $produto->save();
+
+        return redirect('/produto')->with('status', 'Produto atualizado com sucesso!');
+
     }
 
     /**
@@ -92,6 +99,6 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
         $produto->delete();
-        return redirect('/produto')->with('status','Produto excluído com sucesso');
+        return redirect('/produto')->with('status', 'Produto excluído com sucesso!');
     }
 }
